@@ -1,0 +1,26 @@
+# TC is O(N) because we only traverse through the elements once and SC is O(N) because we store stack stores operands/results.
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for char in tokens:    
+            if char == '+':
+                num1 = stack.pop()
+                num2 = stack.pop()
+                stack.append(num1 + num2)
+            elif char == '*':
+                num1 = stack.pop()
+                num2 = stack.pop()
+                stack.append(num1 * num2)
+            elif char == '-':
+                num1 = stack.pop()
+                num2 = stack.pop()
+                stack.append(num2 - num1)
+            elif char == '/':
+                num1 = stack.pop()
+                num2 = stack.pop()
+                stack.append(int(num2 / num1))
+            else:
+                stack.append(int(char))
+        return int(stack[-1])
+                
+        
